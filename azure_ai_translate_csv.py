@@ -1,3 +1,52 @@
+"""
+===============================================================================
+Program:      azure_ai_translate_csv.py
+Description:  Reads English texts from a CSV file, translates each text into 
+              Brazilian Portuguese using Azure Cognitive Services Translator API,
+              and saves the translated results back to a new CSV file.
+
+Author:       Murray Pung
+Date:         2025-06-03
+Version:      1.0.0
+
+Dependencies:
+  - Python 3.6+
+  - requests
+  - pandas
+  - python-dotenv
+
+Environment Variables (in .env):
+  - AZURE_TRANSLATOR_CSV_KEY       : Azure Translator subscription key
+  - AZURE_TRANSLATOR_CSV_ENDPOINT  : Azure Translator endpoint URL
+  - AZURE_TRANSLATOR_CSV_REGION    : Azure service region
+
+Workflow:
+  1. Load Azure Translator CSV credentials from environment variables
+  2. Load English texts from input CSV (column named 'text')
+  3. For each text, send request to Azure Translator API to translate into pt-BR
+  4. Append translated text as a new column 'Portuguese_BR' to the DataFrame
+  5. Save the DataFrame with translations into an output CSV file
+  6. Adds a small delay between API calls to avoid throttling
+
+Input:
+  - CSV file: data/interesting_text.csv with column 'text'
+
+Output:
+  - CSV file: data/translated_to_portuguese_br.csv including 'Portuguese_BR' column
+
+Usage:
+  - Ensure input CSV exists and credentials are set in .env
+  - Run script to generate translated CSV
+
+Notes:
+  - Adjust languages and filenames as needed
+  - Handles API response errors gracefully by inserting None for failed translations
+
+Example:
+  python azure_translator_csv.py
+===============================================================================
+"""
+
 import requests
 import uuid
 import pandas as pd
