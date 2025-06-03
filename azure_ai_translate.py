@@ -1,3 +1,49 @@
+"""
+===============================================================================
+Program:      azure_ai_translate.py
+Description:  Translates a given English text into multiple target languages
+              (French and Zulu) using Azure Cognitive Services Translator API.
+
+Author:       Murray Pung
+Date:         2025-06-03
+Version:      1.0.0
+
+Dependencies:
+  - Python 3.6+
+  - requests
+  - python-dotenv
+
+Environment Variables (in .env):
+  - AZURE_TRANSLATOR_KEY       : Azure Translator subscription key
+  - AZURE_TRANSLATOR_ENDPOINT  : Azure Translator endpoint URL
+  - AZURE_TRANSLATOR_LOCATION  : Azure service region (default: australiaeast)
+
+Workflow:
+  1. Load Azure Translator credentials and region from environment variables
+  2. Construct request URL and headers for the Translator Text API
+  3. Define input text and target languages
+  4. Send POST request to translate text
+  5. Print JSON formatted translation results to console
+
+Input:
+  - Hardcoded English text in the script
+
+Output:
+  - JSON response printed to console showing translations
+
+Usage:
+  - Set Azure Translator credentials in .env file
+  - Run script to see translated output
+
+Notes:
+  - Modify 'body' and 'params' to translate other text or add languages
+  - Designed as a simple example of Translator Text API usage
+
+Example:
+  python azure_translator_sample.py
+===============================================================================
+"""
+
 import os
 import requests
 import uuid
