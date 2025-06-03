@@ -1,3 +1,53 @@
+"""
+===============================================================================
+Program:      azure_ai_speech.py
+Description:  Transcribes all WAV audio files in the 'audio' folder into
+              multiple specified languages using Azure Cognitive Services
+              Speech SDK. Saves transcription text files to 'transcriptions'
+              folder.
+
+Author:       Murray Pung
+Date:         2025-06-03
+Version:      1.0.0
+
+Dependencies:
+  - Python 3.6+
+  - azure-cognitiveservices-speech
+  - python-dotenv
+
+Environment Variables (in .env):
+  - AZURE_SPEECH_KEY      : Azure Speech service subscription key
+  - AZURE_SPEECH_REGION   : Azure Speech service region
+
+Workflow:
+  1. Load Azure Speech credentials from environment
+  2. For each WAV file in 'audio' folder, transcribe audio to multiple
+     languages (currently English and Portuguese)
+  3. Save transcriptions as text files in 'transcriptions' folder,
+     with language suffix in filename
+  4. Provide console output for progress and errors
+
+Input:
+  - WAV audio files in 'audio' folder
+
+Output:
+  - Transcription text files in 'transcriptions' folder
+    (filename format: original_name.{language}.txt)
+
+Usage:
+  - Set Azure credentials in .env
+  - Place WAV files in 'audio'
+  - Run the script
+
+Notes:
+  - Supports multiple languages by specifying language codes in the script
+  - Handles recognition failures and no-match cases with appropriate messages
+
+Example:
+  python azure_speech_transcription.py
+===============================================================================
+"""
+
 import os
 import azure.cognitiveservices.speech as speechsdk
 from dotenv import load_dotenv
