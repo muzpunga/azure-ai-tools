@@ -1,3 +1,54 @@
+"""
+===============================================================================
+Program:      azure_ai_comp_viz.py
+Description:  Analyzes images using Azure Computer Vision API to extract
+              categories, tags, descriptions, faces, objects, colors, brands,
+              and adult content. Renames and copies images based on analysis. 
+              Particularly useful for auto generating better file names.
+
+Author:       Murray Pung
+Date:         2025-06-03
+Version:      1.0.0
+
+Dependencies:
+  - Python 3.6+
+  - azure-cognitiveservices-vision-computervision
+  - msrest
+  - python-dotenv
+
+Environment Variables (in .env):
+  - AZURE_COMPUTERVISION_CSV_KEY       : Azure Computer Vision subscription key
+  - AZURE_COMPUTERVISION_CSV_ENDPOINT  : Azure Computer Vision endpoint URL
+
+Workflow:
+  1. Load Azure credentials from environment
+  2. Analyze each image in the 'data/images' folder with multiple visual features
+  3. Log detailed analysis info (categories, tags, faces, objects, etc.)
+  4. Generate a new filename based on top analysis results
+  5. Copy and rename images to 'data/images/analysis/updated_images' folder
+  6. Save a text file with the analysis results
+
+Input:
+  - Image files in 'data/images' folder
+
+Output:
+  - Text summary saved to 'data/images/analysis/analysis_results.txt'
+  - Renamed image copies saved in 'data/images/analysis/updated_images/'
+
+Usage:
+  - Ensure .env contains valid Azure Computer Vision keys
+  - Place images to analyze in 'data/images'
+  - Run the script
+
+Notes:
+  - Avoids overwriting by appending suffix if filename exists
+  - Skips unsupported or invalid images with logged messages
+
+Example:
+  python azure_image_analysis.py
+===============================================================================
+"""
+
 import os
 import shutil
 import re
